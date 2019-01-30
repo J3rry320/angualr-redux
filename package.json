@@ -20,7 +20,13 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@clr/angular": "^1.0.5",
+    "@clr/icons": "^1.0.5",
+    "@clr/ui": "^1.0.5",
+    "@webcomponents/custom-elements": "^1.0.0",
+    "axios": "^0.18.0",
     "core-js": "^2.5.4",
+    "lodash.debounce": "^4.0.8",
     "redux": "^4.0.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
@@ -31,9 +37,9 @@
     "@angular/cli": "~7.2.2",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -45,6 +51,8 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "tslint-clean-code": "^0.2.9",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "~3.2.2"
   }
 }
