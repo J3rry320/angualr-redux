@@ -1,1 +1,0 @@
-export const SEARCH_WEATHER = 'SEARCH_WEATHER';

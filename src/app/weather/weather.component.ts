@@ -1,4 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  SimpleChange
+} from "@angular/core";
 
 @Component({
   selector: "app-weather",
@@ -7,9 +14,11 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class WeatherComponent implements OnInit {
   @Input() weatherData;
+  private weather: string;
   constructor() {}
-
-  ngOnInit() {
-    console.log(this.weatherData)
+  ngOnChanges(changes: SimpleChanges) {
+    const weatherData: SimpleChange = changes.weatherData;
+    this.weather = weatherData.currentValue;
   }
+  ngOnInit() {}
 }

@@ -1,17 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import Axios from "axios";
+import { NgRedux, select } from "@angular-redux/store";
 import { API_KEY, ROOT_URL } from "config";
 import { fromEvent } from "rxjs";
 import { debounceTime, map } from "rxjs/operators";
 
+import { SEARCH_WEATHER, searchWeather } from "../actions";
+import { IAppState } from "../reducers/initial-state";
+import { store } from "../reducers";
 @Component({
   selector: "app-searchbar",
   templateUrl: "./searchbar.component.html",
   styleUrls: ["./searchbar.component.scss"]
 })
 export class SearchbarComponent implements OnInit {
-  constructor() {}
-
+  @select() weather: IAppState;
+  public weatherData: unknown;
+  constructor(private redux: NgRedux<IAppState>) {}
   ngOnInit() {
     const input = document.getElementById("cityName");
 
@@ -26,17 +31,8 @@ export class SearchbarComponent implements OnInit {
       this.searchWeather(val);
     });
   }
-  async searchWeather(cityName: string) {
-    try {
-      const data = await Axios.get(ROOT_URL, {
-        params: {
-          q: cityName,
-          APPID: API_KEY
-        }
-      });
-      console.log(data.data);
-    } catch {
-      alert("Not Found");
-    }
+  searchWeather(cityName: string) {
+    this.redux.dispatch(<any>searchWeather(cityName));
+    this.weatherData = this.redux.getState();
   }
 }
