@@ -1,15 +1,16 @@
-import { SEARCH_WEATHER } from "../actions";
-import { INIT_STATE, IAppState } from "./initial-state";
-import { RootObject } from "src/types";
 import { Reducer } from "redux";
+import { GOT_WEATHER, SEARCH_WEATHER } from "../actions";
+import { IAppState } from "./initial-state";
 
-export const weather: Reducer<IAppState | 1> = (
+export const weather: Reducer<IAppState> = (
   state: IAppState = null,
   action: any
 ) => {
   switch (action.type) {
     case SEARCH_WEATHER:
-      return action.payload || null;
+      return action.payload;
+    case GOT_WEATHER:
+      return action.payload;
     default:
       return state;
   }

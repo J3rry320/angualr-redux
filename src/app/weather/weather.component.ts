@@ -14,11 +14,14 @@ import {
 })
 export class WeatherComponent implements OnInit {
   @Input() weatherData;
-  private weather: string;
+  private weather: any;
   constructor() {}
   ngOnChanges(changes: SimpleChanges) {
     const weatherData: SimpleChange = changes.weatherData;
     this.weather = weatherData.currentValue;
+    this.weather
+      ? console.log(this.weather)
+      : console.log("Not");
   }
   ngOnInit() {}
 }

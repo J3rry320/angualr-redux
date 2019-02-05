@@ -3,10 +3,12 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ClarityModule } from "@clr/angular";
+import reduxLogger from "redux-logger";
 import { AppComponent } from "./app.component";
 import { ForecastComponent } from "./forecast/forecast.component";
-import { store } from "./reducers";
+import { fetchMiddleware } from "./middleware";
 import { IAppState } from "./reducers/initial-state";
+import { rootReducer } from "./reducers/reducers";
 import { SearchbarComponent } from "./searchbar/searchbar.component";
 import { WeatherParentComponent } from "./weather-parent/weather-parent.component";
 import { WeatherComponent } from "./weather/weather.component";
@@ -32,7 +34,8 @@ import { WindComponent } from "./wind/wind.component";
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.provideStore(store as any);
+    const middleware = [reduxLogger, fetchMiddleware];
+    ngRedux.configureStore(rootReducer as any, {} as any, middleware);
   }
   ngDoBootstrap() {}
 }
