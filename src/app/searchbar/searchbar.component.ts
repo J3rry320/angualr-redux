@@ -1,37 +1,32 @@
 import { NgRedux, select } from "@angular-redux/store";
 import { Component, OnInit } from "@angular/core";
-import { fromEvent } from "rxjs";
-import { map } from "rxjs/operators";
-import { SEARCH_WEATHER, searchWeather } from "../actions";
-import { IAppState } from "../reducers/initial-state";
-import { ROOT_URL, API_KEY } from "config";
+import { ROOT_URL, SEARCH_NEWS_BY_CITY_URL } from "config";
+import { IAppState } from "../../store/reducers/initial-state";
 @Component({
   selector: "app-searchbar",
   templateUrl: "./searchbar.component.html",
   styleUrls: ["./searchbar.component.scss"]
 })
 export class SearchbarComponent implements OnInit {
-  @select() weather: IAppState;
-  public news: any;
+  @select() news: IAppState;
+  public newsData: any;
+  public inputValue: string = null;
   constructor(private redux: NgRedux<IAppState>) {}
   ngOnInit() {}
-  searchWeather = async () => {
-    const input = document.getElementById("cityName");
-
-    const event = fromEvent(input, "input").pipe(
-      // @ts-ignore
-      map(i => i.currentTarget.value)
-    );
-
-    return await this.redux.dispatch({
-      type: "fetch",
-      url: ROOT_URL
-    });
+  onChange = (event: any) => {
+    this.inputValue = event.target.value;
   };
   getNews = async () => {
-    await this.searchWeather();
+    await this.redux.dispatch({
+      type: "fetchNews",
+      url: SEARCH_NEWS_BY_CITY_URL,
+      city: this.inputValue
+    });
     this.redux.subscribe(() => {
-      this.news = this.redux.getState();
+      const state = this.redux.getState();
+
+      // @ts-ignore
+      this.newsData = state.NewsByTopic;
     });
   };
 }

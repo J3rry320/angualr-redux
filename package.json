@@ -26,6 +26,7 @@
     "@clr/ui": "^1.0.5",
     "@webcomponents/custom-elements": "^1.0.0",
     "axios": "^0.18.0",
+    "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "http": "0.0.0",
     "lodash.debounce": "^4.0.8",

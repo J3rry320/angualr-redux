@@ -1,3 +1,20 @@
-<input id="cityName" />
-<button (click)="getNews()">Search</button>
-<app-weather [weatherData]="news"></app-weather>
+<form class="h-100 row align-items-center">
+  <div class="col">
+    <clr-input-container>
+      <label>Enter topic of interest or any name to begin</label>
+      <input clrInput type="text" [(value)]="inputValue" class="w-auto" (change)="onChange($event)" />
+
+      <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
+      <clr-control-error>Error message that appears after focus is lost and control is invalid</clr-control-error>
+
+    </clr-input-container>
+
+    <button class="btn clr-justify-content-center btn-primary-outline btn-sm" (click)="getNews()">Search</button>
+  </div>
+
+</form>
+
+
+
+
+<app-news [News]="newsData"></app-news>

@@ -1,15 +1,15 @@
-import { Reducer } from "redux";
-import { GOT_WEATHER, SEARCH_WEATHER } from "../actions";
+import { SEARCH_CITY_NEWS, GOT_CITY_NEWS } from "../actions";
 import { IAppState } from "./initial-state";
+import { Reducer } from "redux";
 
-export const weather: Reducer<IAppState> = (
+export const NewsByTopic: Reducer<IAppState> = (
   state: IAppState = null,
   action: any
 ) => {
   switch (action.type) {
-    case SEARCH_WEATHER:
+    case SEARCH_CITY_NEWS:
       return action.payload;
-    case GOT_WEATHER:
+    case GOT_CITY_NEWS:
       return action.payload;
     default:
       return state;

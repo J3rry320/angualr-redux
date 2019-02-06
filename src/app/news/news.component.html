@@ -1,0 +1,28 @@
+<div *ngIf="News">
+  <div *ngFor="let article of articles">
+    <div class="clr-row">
+      <div class="clr-col-12">
+        <h3 class="pl-3">
+          {{article.title}}
+        </h3>
+        <strong>{{articles.publishedAt}}</strong>
+        <strong>{{articles.author}}</strong>
+      </div>
+      <div class="clr-col-4">
+        <img [src]="article.urlToImage" alt="No Image found" class="img-fluid" />
+
+
+      </div>
+      <div class="
+          clr-col-8">
+
+        <p>
+          {{article.content}}
+        </p>
+
+      </div>
+
+    </div>
+    <hr />
+  </div>
+</div>
